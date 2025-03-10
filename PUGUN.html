@@ -59,8 +59,6 @@
         }
         .heart {
             position: absolute;
-            color: #ff4081;
-            font-size: 24px;
             animation: floatUp 3s linear infinite;
         }
         @keyframes floatUp {
@@ -83,14 +81,13 @@
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         }
-        /* ปุ่มไปต่อนะอีกหมู */
         .next-button {
             display: inline-block;
             padding: 10px 20px;
             font-size: 18px;
             background-color: #ff4081;
             color: white;
-            text-decoration: none; /* ลบเส้นขีดใต้ */
+            text-decoration: none;
             border-radius: 10px;
             margin-top: 20px;
             cursor: pointer;
@@ -160,7 +157,12 @@
         function createHeart() {
             const heart = document.createElement("div");
             heart.classList.add("heart");
-            heart.innerHTML = "❤️";
+            // ใช้รูปภาพแทนหัวใจ
+            const img = document.createElement("img");
+            img.src = "https://i.ibb.co/VfV7BmT/IMG-20250212-212405-543.jpg"; // ใส่ URL ของรูปภาพที่ต้องการ
+            img.style.width = "30px"; // กำหนดขนาดของรูป
+            img.style.height = "30px";
+            heart.appendChild(img);
             heart.style.left = Math.random() * window.innerWidth + "px";
             heart.style.top = window.innerHeight + "px";
             document.getElementById("hearts").appendChild(heart);
