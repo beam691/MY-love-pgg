@@ -59,11 +59,31 @@
         }
         .heart {
             position: absolute;
+            color: #ff66b2;
+            font-size: 30px;
+            cursor: pointer;
             animation: floatUp 3s linear infinite;
         }
         @keyframes floatUp {
             0% { transform: translateY(0); opacity: 1; }
             100% { transform: translateY(-200px); opacity: 0; }
+        }
+        .heart-break {
+            animation: breakHeart 0.5s forwards;
+        }
+        @keyframes breakHeart {
+            0% {
+                transform: scale(1);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.5);
+                opacity: 0.5;
+            }
+            100% {
+                transform: scale(0);
+                opacity: 0;
+            }
         }
         .time-box {
             font-size: 20px;
@@ -118,7 +138,7 @@
             <img src="https://i.ibb.co/VfV7BmT/IMG-20250212-212405-543.jpg" alt="รูปภาพความรัก" style="width: 200px; height: 200px; object-fit: cover; border-radius: 15px;">
             
             <!-- ปุ่มไปต่อนะอีกหมู -->
-            <a href="https://www.canva.com/design/DAGhVRPaqow/hglvG1ZUcWaJWkg2mSEVuw/view?utm_content=DAGhVRPaqow&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=ha553da7357" target="_blank" class="next-button">ไปต่อนะอีกหมู</a>
+            <a href="https://www.example.com" target="_blank" class="next-button">ไปต่อนะอีกหมู</a>
         </div>
     </div>
 
@@ -157,14 +177,13 @@
         function createHeart() {
             const heart = document.createElement("div");
             heart.classList.add("heart");
-            // ใช้รูปภาพแทนหัวใจ
-            const img = document.createElement("img");
-            img.src = "https://i.ibb.co/VfV7BmT/IMG-20250212-212405-543.jpg"; // ใส่ URL ของรูปภาพที่ต้องการ
-            img.style.width = "30px"; // กำหนดขนาดของรูป
-            img.style.height = "30px";
-            heart.appendChild(img);
+            heart.innerHTML = "❤️";
             heart.style.left = Math.random() * window.innerWidth + "px";
             heart.style.top = window.innerHeight + "px";
+            heart.addEventListener('click', function() {
+                heart.classList.add('heart-break');
+                setTimeout(() => heart.remove(), 500);
+            });
             document.getElementById("hearts").appendChild(heart);
             setTimeout(() => heart.remove(), 3000);
         }
